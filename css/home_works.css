@@ -228,3 +228,14 @@
     height: 100%;
     object-fit: cover;
 }
+
+
+.modal {
+  display: none;
+}
+.modal.show {
+  display: block;
+}
+.modal.hide {
+  display: none;
+}

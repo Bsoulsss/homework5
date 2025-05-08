@@ -85,6 +85,16 @@
     align-items: center;
     margin-top: 50px;
 }
+.tab_content_block {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tab_content_block_active {
+    display: flex;
+    opacity: 1;
+}
 
 /*------CARD SWITCHER------*/
 
