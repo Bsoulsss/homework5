@@ -70,45 +70,109 @@
 // });
 
 // дз3
-document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.querySelector('.modal');
-  const modalClose = document.querySelector('.modal_close');
-  const btnGet = document.getElementById('btn-get');
+// document.addEventListener('DOMContentLoaded', () => {
+//   const modal = document.querySelector('.modal');
+//   const modalClose = document.querySelector('.modal_close');
+//   const btnGet = document.getElementById('btn-get');
+//
+//   function showModal() {
+//     modal.classList.add('show');
+//     modal.classList.remove('hide');
+//     document.body.style.overflow = 'hidden';
+//   }
+//
+//   function hideModal() {
+//     modal.classList.add('hide');
+//     modal.classList.remove('show');
+//     document.body.style.overflow = '';
+//   }
+//
+//   if (btnGet) {
+//     btnGet.addEventListener('click', showModal);
+//   }
+//
+//   if (modalClose) {
+//     modalClose.addEventListener('click', hideModal);
+//   }
+//
+//   modal.addEventListener('click', (e) => {
+//     if (e.target === modal) {
+//       hideModal();
+//     }
+//   });
+//
+//   setTimeout(showModal, 10000);
+//
+//   function handleScrollToEnd() {
+//     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+//       showModal();
+//       window.removeEventListener('scroll', handleScrollToEnd);
+//     }
+//   }
+//
+//   window.addEventListener('scroll', handleScrollToEnd);
+// });
 
-  function showModal() {
-    modal.classList.add('show');
-    modal.classList.remove('hide');
-    document.body.style.overflow = 'hidden';
-  }
 
-  function hideModal() {
-    modal.classList.add('hide');
-    modal.classList.remove('show');
-    document.body.style.overflow = '';
-  }
+// дз4
 
-  if (btnGet) {
-    btnGet.addEventListener('click', showModal);
-  }
-
-  if (modalClose) {
-    modalClose.addEventListener('click', hideModal);
-  }
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      hideModal();
+fetch('../data/characters.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Ошибка загрузки файла characters.json');
     }
-  });
-
-  setTimeout(showModal, 10000);
-
-  function handleScrollToEnd() {
-    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
-      showModal();
-      window.removeEventListener('scroll', handleScrollToEnd);
+    return response.json();
+  })
+  .then(data => {
+    const container = document.querySelector('#characters-container');
+    if (!container) {
+      console.error('Контейнер с id "characters-container" не найден');
+      return;
     }
-  }
 
-  window.addEventListener('scroll', handleScrollToEnd);
-});
+    data.forEach(character => {
+      const card = document.createElement('div');
+      card.classList.add('character-card');
+
+      const name = document.createElement('h3');
+      name.textContent = character.name;
+
+      const age = document.createElement('p');
+      age.textContent =  `Age: ${character.age}`;
+
+      const house = document.createElement('p');
+      house.textContent = `House: ${character.house}`;
+
+      const image = document.createElement('img');
+      image.src = `../images/${character.image}`;
+      image.alt = `${character.name}`;
+
+      card.appendChild(name);
+      card.appendChild(age);
+      card.appendChild(house);
+      card.appendChild(image);
+
+      container.appendChild(card);
+    });
+  })
+  .catch(error => console.error('Ошибка при получении персонажей:', error));
+
+
+
+const xhr = new XMLHttpRequest();
+xhr.open('GET', '../data/any.json', true);
+
+xhr.onload = function () {
+  if (xhr.status === 200) {
+    const data = JSON.parse(xhr.responseText);
+    console.log('Данные из any.json:', data);
+  } else {
+    console.error('Ошибка при запросе any.json:', xhr.statusText);
+  }
+};
+
+xhr.onerror = function () {
+  console.error('Сетевая ошибка при запросе any.json');
+};
+
+xhr.send();
