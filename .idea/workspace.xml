@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="733efc4d-a2ed-4b03-b37a-512a081ff1bd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/data/any.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/characters.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Hermione.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Ron Weasley.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/potter.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/CONVERTER.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/home_works.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/home_works.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home_works.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home_works.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/lesson.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +34,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "task-4",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "/Users/akbermetokelova/Downloads/project/images",
     "node.js.detected.package.eslint": "true",
@@ -111,7 +106,7 @@
       <workItem from="1733135781586" duration="1605000" />
       <workItem from="1735812739155" duration="4510000" />
       <workItem from="1736158696260" duration="3487000" />
-      <workItem from="1747069703670" duration="4723000" />
+      <workItem from="1747069703670" duration="6915000" />
     </task>
     <servers />
   </component>
