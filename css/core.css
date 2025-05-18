@@ -11,7 +11,7 @@
 
 body {
     font-family: "Britannic Bold", sans-serif;
-    background: #c2d0d0;
+    background: #0A0A0F;
 }
 
 .btn {
@@ -19,9 +19,9 @@ body {
     height: 50px;
     font-size: 20px;
     cursor: pointer;
-    border: 1px solid var(--orange);
+    border: 1px solid var(--primary);
     background: black;
-    color: var(--orange);
+    color: var(--primary);
     border-radius: 8px;
 }
 
@@ -29,9 +29,10 @@ body {
     background: #414349;
 }
 
+
 .btn:active {
     background: #56585D;
-    border: 2px solid var(--orange);
+    border: 2px solid var(--primary);
 }
 
 a {
@@ -77,12 +78,12 @@ h4 {
 }
 
 strong {
-    color: #F79300;
+    color: var(--primary);
 }
 
 label {
     font-size: 24px;
-    color: var(--orange);
+    color: var(--primary);
 }
 
 input {
@@ -90,9 +91,9 @@ input {
     height: 50px;
     font-size: 20px;
     padding-left: 5px;
-    color: var(--orange);
+    color: var(--primary);
     background: black;
-    border: 2px solid var(--orange);
+    border: 2px solid var(--primary);
 }
 
 .checker {
@@ -104,7 +105,7 @@ input {
     display: block;
     width: 100px;
     height: 100px;
-    background: var(--orange);
+    background: var(--primary);
     color: black;
     font-size: 20px;
     text-transform: uppercase;
@@ -114,12 +115,14 @@ input {
 }
 
 .btn-slide:hover {
-    background: #b68733 !important;
+    background: var(--secondary) !important;
     cursor: pointer;
     color: white;
 }
 
 :root {
-    --orange: orange;
+    --primary: rgba(5, 243, 243, 0.75);
+    --secondary: #9D4EDD;
+    --accent: #FF00FF;
     --black: black;
 }
