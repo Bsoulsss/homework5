@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM loaded, initializing email validation...');
   const gmailInput = document.getElementById('gmail_input');
   const gmailButton = document.getElementById('gmail_button');
   const gmailResult = document.getElementById('gmail_result');
@@ -7,18 +8,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   gmailButton.addEventListener('click', () => {
     const value = gmailInput.value.trim();
+    console.log('Validating email:', value);
 
     if (gmailRegex.test(value)) {
       gmailResult.textContent = 'Почта валидна ✅';
       gmailResult.style.color = 'lime';
+      console.log('Email is valid');
     } else {
       gmailResult.textContent = 'Некорректная почта ❌';
       gmailResult.style.color = 'red';
+      console.log('Email is invalid');
     }
   });
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM loaded, initializing block movement...');
   const parentBlock = document.querySelector('.parent_block');
   const childBlock = document.querySelector('.child_block');
 
@@ -45,12 +50,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  console.log('Starting block movement animation');
   move();
 });
 
 
 // дз2
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM loaded, initializing counter...');
   let count = 0;
   let intervalId = null;
 
@@ -62,10 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateDisplay() {
     if (display) {
       display.textContent = count;
+      console.log('Counter updated:', count);
     }
   }
   function startCounting() {
     if (intervalId !== null) return;
+    console.log('Starting counter');
     intervalId = setInterval(() => {
       count++;
       updateDisplay();
@@ -74,12 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function stopCounting() {
     if (intervalId !== null) {
+      console.log('Stopping counter');
       clearInterval(intervalId);
       intervalId = null;
       startBtn.disabled = false;
     }
   }
   function resetCounting() {
+    console.log('Resetting counter');
     stopCounting();
     count = 0;
     updateDisplay();
@@ -92,64 +103,69 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // дз4
+async function loadCharacters() {
+    console.log('Starting to load characters...');
+    try {
+        const response = await fetch('../data/characters.json');
+        if (!response.ok) {
+            throw new Error('Ошибка загрузки файла characters.json');
+        }
 
-fetch('../data/characters.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Ошибка загрузки файла characters.json');
+        const data = await response.json();
+        console.log('Characters data received:', data);
+        
+        const container = document.querySelector('#characters-container');
+        
+        if (!container) {
+            throw new Error('Контейнер с id "characters-container" не найден');
+        }
+
+        data.forEach((character, index) => {
+            console.log(`Creating character card ${index + 1}:`, character.name);
+            const card = document.createElement('div');
+            card.classList.add('character-card');
+
+            const name = document.createElement('h3');
+            name.textContent = character.name;
+
+            const age = document.createElement('p');
+            age.textContent = `Age: ${character.age}`;
+
+            const house = document.createElement('p');
+            house.textContent = `House: ${character.house}`;
+
+            const image = document.createElement('img');
+            image.src = `../images/${character.image}`;
+            image.alt = `${character.name}`;
+
+            card.appendChild(name);
+            card.appendChild(age);
+            card.appendChild(house);
+            card.appendChild(image);
+
+            container.appendChild(card);
+        });
+        console.log('All character cards have been created');
+    } catch (error) {
+        console.error('Ошибка при получении персонажей:', error);
     }
-    return response.json();
-  })
-  .then(data => {
-    const container = document.querySelector('#characters-container');
-    if (!container) {
-      console.error('Контейнер с id "characters-container" не найден');
-      return;
+}
+
+loadCharacters();
+
+// Замена XMLHttpRequest на fetch с async/await
+async function loadAnyData() {
+    console.log('Starting to load any.json data...');
+    try {
+        const response = await fetch('../data/any.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Data from any.json received:', data);
+    } catch (error) {
+        console.error('Ошибка при запросе any.json:', error);
     }
+}
 
-    data.forEach(character => {
-      const card = document.createElement('div');
-      card.classList.add('character-card');
-
-      const name = document.createElement('h3');
-      name.textContent = character.name;
-
-      const age = document.createElement('p');
-      age.textContent =  `Age: ${character.age}`;
-
-      const house = document.createElement('p');
-      house.textContent = `House: ${character.house}`;
-
-      const image = document.createElement('img');
-      image.src = `../images/${character.image}`;
-      image.alt = `${character.name}`;
-
-      card.appendChild(name);
-      card.appendChild(age);
-      card.appendChild(house);
-      card.appendChild(image);
-
-      container.appendChild(card);
-    });
-  })
-  .catch(error => console.error('Ошибка при получении персонажей:', error));
-
-
-
-const xhr = new XMLHttpRequest();
-xhr.open('GET', '../data/any.json', true);
-
-xhr.onload = function () {
-  if (xhr.status === 200) {
-    const data = JSON.parse(xhr.responseText);
-    console.log('Данные из any.json:', data);
-  } else {
-    console.error('Ошибка при запросе any.json:', xhr.statusText);
-  }
-};
-
-xhr.onerror = function () {
-  console.error('Сетевая ошибка при запросе any.json');
-};
-
-xhr.send();
+loadAnyData();
